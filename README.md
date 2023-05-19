@@ -1,5 +1,5 @@
 # Data-Engineering-Group-2 GitHub Stars
-Project in the course Data Engineering II at Uppsala University
+Project in the course Data Engineering II at Uppsala University.
 
 ## Authors:
 Alex Kangas <br>
