@@ -22,7 +22,7 @@ data = json.load(f)
 csv_file = open(OUTPUT_CSV_FILE, 'w')
 repositories = csv.writer(csv_file, delimiter=',')
 repositories.writerow(['name', 'size', 'star_count', 'folk_counts', 'open_issue', 'has_wiki',
-                      'Java', 'Python', 'C', 'JavaScript', 'Ruby', 'Objective_C', 'Other_language'])
+                      'Java', 'Python', 'C', 'JavaScript', 'Ruby', 'Objective_C', 'Other_language', 'wathcer_counts'])
 countOfRepositories = 0
 count = 0
 for item in data:
@@ -33,6 +33,7 @@ for item in data:
     fork_counts = item['forks_count']
     wiki_bool = item['has_wiki']
     follower_url = item['subscribers_url']
+    watch_counts = item['watchers_count']
     # if count < 30:
     #     subscribers = getUrl(follower_url)
     #     subscribers_counts = len(subscribers)
@@ -67,7 +68,7 @@ for item in data:
     else:
         other_language = 1
     repositories.writerow([name, size, star_counts, fork_counts, open_issues_count,
-                           has_wiki, Java, Python, C, JavaScript, Ruby, Objective_C, other_language])
+                           has_wiki, Java, Python, C, JavaScript, Ruby, Objective_C, other_language, watch_counts])
     countOfRepositories = countOfRepositories + 1
     count += 1
 
