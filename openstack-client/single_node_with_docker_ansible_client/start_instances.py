@@ -85,25 +85,20 @@ inst_status_dev = instance_dev.status
 print("waiting for 10 seconds.. ")
 time.sleep(10)
 
-while inst_status_prod1 == 'BUILD' or inst_status_prod2 == 'BUILD' or inst_status_dev == 'BUILD' or inst_status_para == 'BUILD':
-    print("Instance: "+instance_prod1.name+" is in " +
-          inst_status_prod1+" state, sleeping for 5 seconds more...")
-    print("Instance: "+instance_prod2.name+" is in " +
-          inst_status_prod2+" state, sleeping for 5 seconds more...")
-
+while inst_status_prod == 'BUILD' or inst_status_dev == 'BUILD' or inst_status_parameter == 'BUILD':
+    print("Instance: "+instance_prod.name+" is in " +
+          inst_status_prod+" state, sleeping for 5 seconds more...")
     print("Instance: "+instance_dev.name+" is in " +
           inst_status_dev+" state, sleeping for 5 seconds more...")
-    print("Instance: "+instance_para.name+" is in " +
-          inst_status_para+" state, sleeping for 5 seconds more...")
+    print("Instance: "+instance_parameter.name+" is in " +
+          inst_status_parameter+" state, sleeping for 5 seconds more...")
     time.sleep(5)
-    instance_prod1 = nova.servers.get(instance_prod1.id)
-    inst_status_prod1 = instance_prod1.status
-    instance_prod2 = nova.servers.get(instance_prod2.id)
-    inst_status_prod2 = instance_prod2.status
+    instance_prod = nova.servers.get(instance_prod.id)
+    inst_status_prod = instance_prod.status
     instance_dev = nova.servers.get(instance_dev.id)
     inst_status_dev = instance_dev.status
-    instance_para = nova.servers.get(instance_para.id)
-    inst_status_para = instance_para.status
+    instance_parameter = nova.servers.get(instance_parameter.id)
+    inst_status_parameter = instance_parameter.status
 
 ip_address_prod = None
 for network in instance_prod.networks[private_net]:
