@@ -14,7 +14,7 @@ from keystoneauth1 import session
 
 
 flavor = "ssc.medium"
-private_net = "UPPMAX 2020/1-3 Internal IPv4 Network"
+private_net = "UPPMAX 2023/1-1 Internal IPv4 Network"
 floating_ip_pool_name = None
 floating_ip = None
 image_name = "Ubuntu 22.04 - 2023.01.07"
@@ -59,28 +59,27 @@ if os.path.isfile(cfg_file_path):
 else:
     sys.exit("dev-cloud-cfg.txt is not in current working directory")
 
-cfg_file_path = os.getcwd()+'/para-cloud-cfg.txt'
+cfg_file_path = os.getcwd()+'/parameter-cloud-cfg.txt'
 if os.path.isfile(cfg_file_path):
-    userdata_para = open(cfg_file_path)
+    userdata_parameter = open(cfg_file_path)
 else:
-    sys.exit("para-cloud-cfg.txt is not in current working directory")
+    sys.exit("parameter-cloud-cfg.txt is not in current working directory")
 
 secgroups = ['default']
 
-key_name = 'DE2_group2'
+key_name = ""
 
 print("Creating instances ... ")
 instance_prod = nova.servers.create(name="group2-prod_sever_"+str(identifier), image=image,
                                     flavor=flavor, key_name=key_name, userdata=userdata_prod, nics=nics, security_groups=secgroups)
 instance_parameter = nova.servers.create(name="group2-parameter_server_"+str(identifier), image=image,
-                                         flavor=flavor, key_name=key_name, userdata=userdata_prod, nics=nics, security_groups=secgroups)
+                                         flavor=flavor, key_name=key_name, userdata=userdata_parameter, nics=nics, security_groups=secgroups)
 instance_dev = nova.servers.create(name="group2-dev_server_"+str(identifier), image=image,
                                    flavor=flavor, key_name=key_name, userdata=userdata_dev, nics=nics, security_groups=secgroups)
 
 inst_status_prod = instance_prod.status
 inst_status_parameter = instance_parameter.status
 inst_status_dev = instance_dev.status
-#inst_status_para = instance_para.status
 
 print("waiting for 10 seconds.. ")
 time.sleep(10)
@@ -88,6 +87,7 @@ time.sleep(10)
 while inst_status_prod == 'BUILD' or inst_status_dev == 'BUILD' or inst_status_parameter == 'BUILD':
     print("Instance: "+instance_prod.name+" is in " +
           inst_status_prod+" state, sleeping for 5 seconds more...")
+
     print("Instance: "+instance_dev.name+" is in " +
           inst_status_dev+" state, sleeping for 5 seconds more...")
     print("Instance: "+instance_parameter.name+" is in " +
@@ -116,7 +116,6 @@ for network in instance_parameter.networks[private_net]:
 if ip_address_parameter is None:
     raise RuntimeError('No IP address assigned!')
 
-
 ip_address_dev = None
 for network in instance_dev.networks[private_net]:
     if re.match('\d+\.\d+\.\d+\.\d+', network):
@@ -125,14 +124,6 @@ for network in instance_dev.networks[private_net]:
 if ip_address_dev is None:
     raise RuntimeError('No IP address assigned!')
 
-# ip_address_para = None
-# for network in instance_para.networks[private_net]:
-#     if re.match('\d+\.\d+\.\d+\.\d+', network):
-#         ip_address_para = network
-#         break
-# if ip_address_para is None:
-#     raise RuntimeError('No IP address assigned!')
-
 print("Instance: " + instance_prod.name + " is in " +
       inst_status_prod + " state" + " ip address: " + ip_address_prod)
 
@@ -140,4 +131,4 @@ print("Instance: " + instance_parameter.name + " is in " +
       inst_status_parameter + " state" + " ip address: " + ip_address_parameter)
 print("Instance: " + instance_dev.name + " is in " +
       inst_status_dev + " state" + " ip address: " + ip_address_dev)
-#print ("Instance: "+ instance_para.name +" is in " + inst_status_para + " state" + " ip address: "+ ip_address_para)
+
