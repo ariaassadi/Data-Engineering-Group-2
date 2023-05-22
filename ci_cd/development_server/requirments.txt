@@ -8,3 +8,4 @@ PyGithub
 scikit-learn
 pandas
 joblib
+catboost

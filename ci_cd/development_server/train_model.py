@@ -15,18 +15,18 @@ import numpy as np
 import pandas as pd
 
 # Visualisation
-import matplotlib as mpl
-import matplotlib.pyplot as plt
-import matplotlib.pylab as pylab
-import seaborn as sns
+#import matplotlib as mpl
+#import matplotlib.pyplot as plt
+#import matplotlib.pylab as pylab
+#import seaborn as sns
 
 # Configure visualisations
-color = sns.color_palette()
+#color = sns.color_palette()
 pd.options.mode.chained_assignment = None
 pd.options.display.max_columns = 999
 # mpl.style.use( 'ggplot' )
-sns.set_style('whitegrid')
-pylab.rcParams['figure.figsize'] = 10, 8
+# sns.set_style('whitegrid')
+#pylab.rcParams['figure.figsize'] = 10, 8
 seed = 7
 
 # importing libraries
@@ -34,7 +34,7 @@ seed = 7
 
 np.random.seed(seed)
 
-data = pd.read_csv('/content/drive/MyDrive/repositories.csv').iloc[:, 1:]
+data = pd.read_csv('repositories.csv').iloc[:, 1:]
 
 X = data.drop(['star_count'], axis=1)
 y = data.star_count
@@ -138,21 +138,21 @@ test_scores.append(test_score)
 
 models.append("cat boost")
 
-model_cat = CatBoostRegressor(
-    iterations=440, depth=8, learning_rate=0.1, loss_function='RMSE', use_best_model=True)
-model_cat.fit(X_train[:90503], y_train[:90503], eval_set=(
-    X_train[90503:], y_train[90503:]), plot=True)
+# model_cat = CatBoostRegressor(
+#     iterations=440, depth=8, learning_rate=0.1, loss_function='RMSE', use_best_model=True)
+# model_cat.fit(X_train[:90503], y_train[:90503], eval_set=(
+#     X_train[90503:], y_train[90503:]), plot=True)
 
-y_train_pred = model_cat.predict(X_train)
-y_pred = model_cat.predict(X_test)
+# y_train_pred = model_cat.predict(X_train)
+# y_pred = model_cat.predict(X_test)
 
-train_score = r2_score(y_train, y_train_pred)
-test_score = r2_score(y_test, y_pred)
+# train_score = r2_score(y_train, y_train_pred)
+# test_score = r2_score(y_test, y_pred)
 
-training_scores.append(training_score)
-test_scores.append(test_score)
-print("Training score - " + str(train_score))
-print("Test score - " + str(test_score))
+# training_scores.append(training_score)
+# test_scores.append(test_score)
+# print("Training score - " + str(train_score))
+# print("Test score - " + str(test_score))
 
 print(models)
 print(training_scores)
