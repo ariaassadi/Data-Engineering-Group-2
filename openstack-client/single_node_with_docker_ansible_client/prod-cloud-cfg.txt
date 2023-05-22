@@ -1,10 +1,12 @@
 #cloud-config
 
+
 users:
  - name: appuser
-   sudo: ALL=(ALL) NOPASSWD:ALL
+   udo: ALL=(ALL) NOPASSWD:ALL
    home: /home/appuser
    shell: /bin/bash
    ssh_authorized_keys:
-     - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCtSrktFxWmEw/q3queNQcNeGQ0XRHaXe4iWp/1H3WglNGq0UcUr94P97ToVJaMwM9FuCwcmyzdnc72EjtINvuu0TjxarPcaB+w1DXL0PHD59qkAd2eYkBRN3NXtDUnJBxLd0yYOS04k1kH2xGz8BFHTdMOcEfcMPOCnvGbZxB3USOIPWVPIDEts7F3FNkic2A5Es5JmZ0F5eH3UMurBn+UZS2AmvSH5r0h2X/oR+yuymNMBqL/mY7ryJmndSp2n0sPZpgQbFIZPnEgWD/f62l5IFIPX0tJ4QzlqBSybIqSy6W7ZHXPxQea7wJ4zhNrJIph2y1Kmo+8o7Ln2/lOr7b1CDBbkHfSyEF196qgpDJiwCU1FtPnF9WzFta0Xoox8PP3rLUabTPoNBGRXnoElt85uPwLIYsgIQrQsaedYAg00OuZdqglAIFdGgpX0FIf5KbYYF2B8UZAkcwRQ/1VIhanrh7NzlpUTK3vhwct81GvbBAJMGV5ludLN61QEPirIEc= ubuntu@de2-group11-client
-byobu_default: system
+     - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCtIXHQbIB31f6lpF7qIIPQhygRzzwvLnImmY+cY/rh35M1NW3SC4K/wJQ4SYNjjrkwDrIpUKs+F1B855Bxpz56i37D5SaONONEpy01CZmWT5JoEp/FV7lMQJ+TWvDfTRX1GbmfcfKgAIHQTCwIDPkEF/G5GWQCSYvE3GAO0l3WzCkAU2dy6E2JxDtcBHxqYfkKQmMXD4bCYc+OKUD29yvzns6aNaXpvvzNSDd8AgQxEa9nja97mPa2qpWOpXy+1x5l8QkOYwio+cSP6r6eEIlXVspEKm7ILK+MQCBkSTBe99g9lGhkiCHp+WPkwxKNNXsOeZdIwSKdbZxMs0LApW9YoVSa8sWfrSWU1xuUjUwBfUjJRmuPYYunvNfFV9RXAEFTUvy1Yy5Z3mbUh+sjeDijHQzIPbkBCJoCrmrap+ue4tHB5/H/2Hj6bExiLcUA5P427lNHjDXnUC3XdBx6JEMZwr6Onyo9rIfwyG7yWplTcPXT/mLlrUVkZ+J76FhVSdc= ubuntu@group2-project
+
+byobu_default: systems
