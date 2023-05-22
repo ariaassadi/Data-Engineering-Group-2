@@ -35,7 +35,10 @@
         group: appuser
 
     - name: Get updated files from git repository
-      git: repo=https://{{ githubuser }}:{{ githubpassword }}@github.com/Junjie-Chu/DE2_Project.git dest=/home/DE2_Project
+      become: true
+      git:
+        repo: "https://github.com/ariaassadi/Data-Engineering-Group-2.git"
+        dest: /home/DE2_Project
 
     - name: Change ownership of a directory
       become: true
