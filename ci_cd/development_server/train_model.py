@@ -6,13 +6,15 @@ from keras.wrappers.scikit_learn import KerasRegressor
 from keras.layers import Dense, Dropout, BatchNormalization
 from keras.models import Sequential
 from sklearn.ensemble import RandomForestRegressor
-from catboost import CatBoostRegressor
+#from catboost import CatBoostRegressor
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 import numpy as np
 import pandas as pd
+import joblib
+import pickle
 
 # Visualisation
 #import matplotlib as mpl
@@ -136,7 +138,7 @@ print("test score: ", test_score)
 training_scores.append(training_score)
 test_scores.append(test_score)
 
-models.append("cat boost")
+# models.append("cat boost")
 
 # model_cat = CatBoostRegressor(
 #     iterations=440, depth=8, learning_rate=0.1, loss_function='RMSE', use_best_model=True)
@@ -165,6 +167,16 @@ with open("model.json", "w") as json_file:
 # serialize weights to HDF5
 estimator.model.save_weights("model.h5")
 print("Saved model to disk")
+
+
+# save rf model
+RFC_pickle = pickle.dumps(model_forest)
+joblib.dump(model_forest, "rfc_model.m")
+
+# save gradien boost model
+GBR_pickle = pickle.dumps(reg)
+joblib.dump(reg, "gdbt_model.m")
+
 
 # load json and create model
 json_file = open('model.json', 'r')
