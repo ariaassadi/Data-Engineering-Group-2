@@ -14,15 +14,15 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return '<h1>Welcome to our project. Group 11.</h1>'
+    return '<h1>DataEngineering II Project: GitStar predictor.</h1>'
 
 
-@app.route("/RMSE", methods=['POST', 'GET'])
+@app.route("/R2", methods=['POST', 'GET'])
 def accuracy():
     if request.method == 'POST':
         r = get_accuracy.delay()
         a = r.get()
-        return '<h1>The Root Mean Square ERROR is {}</h1>'.format(a)
+        return '<h1>The R2 score is {}</h1>'.format(a)
 
     return '''<form method="POST">
     <input type="submit">
@@ -34,12 +34,9 @@ def predictions():
     if request.method == 'POST':
         results = get_predictions.delay()
         predictions = results.get()
-
         results = get_accuracy.delay()
         accuracy = results.get()
-
         final_results = predictions
-
         return render_template('result.html', accuracy=accuracy, final_results=final_results)
 
     return '''<form method="POST">
