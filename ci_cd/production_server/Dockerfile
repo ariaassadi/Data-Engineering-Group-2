@@ -1,5 +1,5 @@
 FROM python:3.6
-ADD requirements.txt /app/requirements.txt
+ADD requirements.txt /app/
 WORKDIR /app/
 RUN pip install -r requirements.txt -i https://pypi.mirrors.ustc.edu.cn/simple/
 ENTRYPOINT ["python"]
